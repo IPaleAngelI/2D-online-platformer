@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpenMod.UnityEngine</name>
+    </assembly>
+    <members>
+        <member name="T:OpenMod.UnityEngine.Plugins.OpenModUnityEnginePlugin">
+            <summary>
+            Base class for all UnityEngine plugins.
+            </summary>
+        </member>
+        <member name="M:OpenMod.UnityEngine.Transforms.UnityTransform.DestroyAsync">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
