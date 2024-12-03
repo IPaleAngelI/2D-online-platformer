@@ -1,0 +1,1207 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpenMod.Extensions.Games.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Acl.IHasOwnership">
+            <summary>
+            Defines that an object can have an owner.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Acl.IHasOwnership.Ownership">
+            <summary>
+            Gets the ownership of this object.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Acl.IOwnership">
+            <summary>
+            Represts the ownership of an object.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Acl.IOwnership.HasOwner">
+            <summary>Checks if the object has an owner. Either <see cref="P:OpenMod.Extensions.Games.Abstractions.Acl.IOwnership.OwnerPlayerId"/> or <see cref="P:OpenMod.Extensions.Games.Abstractions.Acl.IOwnership.OwnerGroupId"/> will not be null if true.</summary>
+            <returns>
+            <b>True</b> if the object has an owner; otherwise, <b>false</b>.
+            </returns>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Acl.IOwnership.OwnerPlayerId">
+            <summary>
+            Gets the ID of the player owning this object. Returns null if no player owns the object.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Acl.IOwnership.OwnerGroupId">
+            <summary>
+            Gets the ID of the group owning this object. Returns null if no group owns the object.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Acl.IOwnership.HasAccessAsync(OpenMod.Extensions.Games.Abstractions.Players.IPlayer)">
+            <summary>
+            Checks if the given player has access to this object.
+            </summary>
+            <param name="player">The player to check against.</param>
+            <returns><b>True</b> if the player has access; otherwise, <b>false.</b></returns>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Building.IBuildable">
+            <summary>
+            Represents a buildable object players can place.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Building.IBuildable.Asset">
+            <summary>
+            Gets the asset of the object.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Building.IBuildable.State">
+            <summary>
+            Gets the state of the object.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Building.IBuildable.BuildableInstanceId">
+            <summary>
+            Gets the unique instance ID of the object.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Building.IBuildable.DestroyAsync">
+            <summary>
+            Destroys the object.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Building.IBuildableAsset">
+            <summary>
+            Represents a buildable asset.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Building.IBuildableAsset.BuildableAssetId">
+            <summary>
+            Gets the ID of the asset.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Building.IBuildableAsset.BuildableType">
+            <summary>
+            Gets the type of the asset.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Building.IBuildableDeployedEvent">
+            <summary>
+            The interface for any buildable deployed events.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Building.IBuildableDeployingEvent">
+            <summary>
+            The interface for any buildable deploying events.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Building.IBuildableDeployingEvent.BuildableAsset">
+            <summary>
+            Gets the buildable asset that is going to be used whilst deploying.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Building.IBuildableDestroyedEvent">
+            <summary>
+            The interface for any buildable destroyed events.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Building.IBuildableDestroyingEvent">
+            <summary>
+            The interface for any buildable destroying events.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Building.IBuildableDirectory">
+            <summary>
+            The service for querying buildables and buildable assets.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Building.IBuildableDirectory.GetBuildableAssetsAsync">
+            <summary>
+            Gets all buildable assets.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Building.IBuildableDirectory.GetBuildablesAsync">
+            <summary>
+            Gets all placed buildables.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Building.IBuildableEvent">
+            <summary>
+            The base interface for all buildable related events.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Building.IBuildableEvent.Buildable">
+            <summary>
+            Gets the buildable related to the event.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Building.IBuildableSpawner">
+            <summary>
+            The service for spawning buildables.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Building.IBuildableSpawner.SpawnBuildableAsync(System.Numerics.Vector3,System.String,OpenMod.Extensions.Games.Abstractions.Building.IBuildableState)">
+            <summary>
+            Spawns a buildable at the given position.
+            </summary>
+            <param name="position">The position to spawn the buildable at.</param>
+            <param name="buildableAssetId">The ID of the buildable asset.</param>
+            <param name="state">The optional state for the buildable.</param>
+            <returns><b>The created buildable</b> if successful; otherwise, <b>>null</b>.</returns>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Building.IBuildableState">
+            <summary>
+            Represents the state of a buildable.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Building.IBuildableState.Health">
+            <summary>
+            Gets the healh of the buildable.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Building.IBuildableState.StateData">
+            <summary>
+            Gets the state of the buildable.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Building.IBuildableTransformedEvent">
+            <summary>
+            The interface for any buildable transformed events.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Building.IBuildableTransformingEvent">
+            <summary>
+            The interface for any buildable transforming events.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Entities.IDamageSource">
+            <summary>
+            Represents a damage source.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IDamageSource.DamageSourceName">
+            <summary>
+            Gets the human-readable name of the damage source.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Entities.IEntity">
+            <summary>
+            Represents an entity such as players, NPCs, cars, etc.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IEntity.Asset">
+            <summary>
+            Gets the asset of the entity.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IEntity.State">
+            <summary>
+            Gets the state of the entity.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IEntity.EntityInstanceId">
+            <summary>
+            Gets the unique instance ID of the entity.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Entities.IEntity.SetPositionAsync(System.Numerics.Vector3)">
+            <summary>
+            Sets the position of an entity.
+            </summary>
+            <param name="position">The position to set to.</param>
+            <returns><b>True</b> if successful; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Entities.IEntity.SetPositionAsync(System.Numerics.Vector3,System.Numerics.Quaternion)">
+            <summary>
+            Sets the position and rotation of an entity.
+            </summary>
+            <param name="position">The position to set to.</param>
+            <param name="rotation">The rotation to set to.</param>
+            <returns><b>True</b> if successful; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Entities.IEntityAsset">
+            <summary>
+            Represents an entity asset.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IEntityAsset.Name">
+            <summary>
+            Gets the human-readable name of the asset.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IEntityAsset.EntityAssetId">
+            <summary>
+            Gets the ID of the asset.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IEntityAsset.EntityType">
+            <summary>
+            Gets the type of the asset.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Entities.IEntityDirectory">
+            <summary>
+            The service for querying entities and entity assets.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Entities.IEntityDirectory.GetEntitiesAsync">
+            <summary>
+            Gets all entities.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Entities.IEntityDirectory.GetEntityAssetsAsync">
+            <summary>
+            Gets all entity assets.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Entities.IEntityEvent">
+            <summary>
+            The base interface for all entity related events.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IEntityEvent.Entity">
+            <summary>
+            Gets the entity related to the event.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Entities.IEntitySpawner">
+            <summary>
+            The service for spawning entities.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Entities.IEntitySpawner.SpawnEntityAsync(System.Numerics.Vector3,System.String,OpenMod.Extensions.Games.Abstractions.Entities.IEntityState)">
+            <summary>
+            Spawns an entity at the given position.
+            </summary>
+            <param name="position">The position to spawn the entity at.</param>
+            <param name="entityAssetId">The ID of the entity asset.</param>
+            <param name="state">The optional state for the entity to spawn.</param>
+            <returns><b>The spawn entity</b> if successful; otherwise <b>null</b>.</returns>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Entities.IEntityState">
+            <summary>
+            Represents the state of an entity.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IEntityState.StateData">
+            <summary>
+            The state of the entity.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Entities.IGameObject">
+            <summary>
+            Represents a physical object in the game.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IGameObject.Transform">
+            <summary>
+            Gets the transform of the object.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Entities.IHasHealth">
+            <summary>
+            Represents an object that has health.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IHasHealth.IsAlive">
+            <summary>
+            Checks if the entity is alive.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IHasHealth.MaxHealth">
+            <summary>
+            Gets the max health the entity can have.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IHasHealth.Health">
+            <summary>
+            Gets the health of the entity.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Entities.IHasHealth.SetHealthAsync(System.Double)">
+            <summary>
+            Sets the health of the entity. Depending on game support, it will not trigger damage effects.
+            </summary>
+            <param name="health">The health to set to.</param>
+            <exception cref="T:System.ArgumentException">Thrown when <c>health</c> is invalid, e.g. when it's greater than <see cref="P:OpenMod.Extensions.Games.Abstractions.Entities.IHasHealth.MaxHealth"/> or less than zero.</exception>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Entities.IHasHealth.SetFullHealthAsync">
+            <summary>
+            This should set the life/health stats to max (this should include food, water, etc if supported)
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Entities.IHasHealth.DamageAsync(System.Double)">
+            <summary>
+            Damages the entity. Depending on game support, it will trigger damage effects.
+            </summary>
+            <param name="amount">The amount to damage.</param>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Entities.IHasHealth.KillAsync">
+            <summary>
+            Kills the entity. Depending on game support, it will trigger death effects.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IHasHunger.MaxHunger">
+            <summary>
+            Gets the max hunger the entity can have.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IHasHunger.Hunger">
+            <summary>
+            Gets the hunger of the entity.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Entities.IHasHunger.SetHungerAsync(System.Double)">
+            <summary>
+            Sets the hunger of the entity.
+            </summary>
+            <param name="hunger">The hunger to set to.</param>
+            <exception cref="T:System.ArgumentException">Thrown when <c>hunger</c> is invalid, e.g. when it's greater than <see cref="P:OpenMod.Extensions.Games.Abstractions.Entities.IHasHunger.MaxHunger"/> or less than zero.</exception>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IHasThirst.MaxThirst">
+            <summary>
+            Gets the max thirst the entity can have.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Entities.IHasThirst.Thirst">
+            <summary>
+            Gets the thirst of the entity.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Entities.IHasThirst.SetThirstAsync(System.Double)">
+            <summary>
+            Sets the thirst of the entity.
+            </summary>
+            <param name="thirst">The thirst to set to.</param>
+            <exception cref="T:System.ArgumentException">Thrown when <c>thirst</c> is invalid, e.g. when it's greater than <see cref="P:OpenMod.Extensions.Games.Abstractions.Entities.IHasThirst.MaxThirst"/> or less than zero.</exception>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Entities.KnownEntityTypes">
+            <summary>
+            Represents common entity types. Support depends on the game.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Entities.NullEntityState">
+            <summary>
+            Represents the null entity state for entities that do not have a state.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.IGameHostInformation">
+            <summary>
+            Provides information about the current game.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.IGameHostInformation.IsClient">
+            <summary>
+            Checks if the current host is a client.
+            </summary>
+            <remarks>
+            A host can be both server and client at the same time.
+            </remarks>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.IGameHostInformation.IsServer">
+            <summary>
+            Checks if the current host is a server.
+            </summary>
+            <remarks>
+            A host can be both server and client at the same time.
+            </remarks>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.IGameHostInformation.ServerAddress">
+            <summary>
+            Gets the address used to connect to the server. <b>Null</b> if the current host is not a server or is not listening yet.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.IGameHostInformation.ServerPort">
+            <summary>
+            Gets the port used to connect to the server. <b>Null</b> if the current host is not a server or is not listening yet.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.IGameHostInformation.ServerInstance">
+            <summary>
+            Gets the current server instance for games that support multiple server instances per installation. Returns
+            <b>default</b> for games that do not support multiple instances. Returns <b>null</b> if the host is not a server.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.IGameHostInformation.ServerName">
+            <summary>
+            Gets the name of the server. Returns <b>null</b> if the host is not a server.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.IGameHostInformation.GameDisplayName">
+            <summary>
+            Gets the name of the game.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.IGameHostInformation.GameVersion">
+            <summary>
+            Gets the version of the running game.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Items.IHasInventory">
+            <summary>
+            Represents an object that may have an inventory.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IHasInventory.Inventory">
+            <summary>
+            Gets the inventory of the object.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Items.IInventory">
+            <summary>
+            Represents an inventory.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IInventory.Pages">
+            <summary>
+            Gets the pages of the inventory.
+            Page support depends on the game and owner object.
+            Some games and objects only suppport a single page.
+            </summary>
+            <example>
+            <para>In the game Unturned, the player inventory consists of multiple pages. These pages<br/> are:</para>
+            * Hands<br/>
+            * Clothing slots<br/>
+            * Primary slot<br/>
+            * Secondary slot<br/>
+            * Clothing pages<br/>
+            </example>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IInventory.IsFull">
+            <summary>
+            Checks if the inventory is full.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Items.IInventoryItem">
+            <summary>
+            Represents an item stored in the inventory.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.IInventoryItem.DropAsync">
+            <summary>
+            Drops the item to the ground.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.IInventoryItem.DestroyAsync">
+            <summary>
+            Destroys the item.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Items.IInventoryPage">
+            <summary>
+            Represents a page of an inventory.
+            <example>
+            </example>
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IInventoryPage.Inventory">
+            <summary>
+            The inventory this page belongs to.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IInventoryPage.Name">
+            <summary>
+            Gets the name of this page.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IInventoryPage.Capacity">
+            <summary>
+            Gets the maximum amount of items this page can hold.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IInventoryPage.IsReadOnly">
+            <summary>
+            Checks if the player can only view the content.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IInventoryPage.IsFull">
+            <summary>
+            Checks if the page is full.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IInventoryPage.Items">
+            <summary>
+            Gets the items this page holds.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Items.IItem">
+            <summary>
+            Represents an item.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItem.ItemInstanceId">
+            <summary>
+            Gets the unique instance ID of the item.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItem.Asset">
+            <summary>
+            Gets the asset of the item.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItem.State">
+            <summary>
+            Gets the state of the item.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.IItem.SetItemQualityAsync(System.Double)">
+            <summary>
+            Sets the quality of the item.
+            </summary>
+            <param name="quality">The quality to set to.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the quality is invalid, e.g. non-positive or larger than the maximum quality allowed by the game.</exception>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.IItem.SetItemAmountAsync(System.Double)">
+            <summary>
+            Sets the amount of the item.
+            </summary>
+            <param name="amount">The amount to set to.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the amount is invalid, e.g. non-positive or larger than the maximum amount allowed by the game.</exception>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.IItem.SetItemDurabilityAsync(System.Double)">
+            <summary>
+            Sets the durability of the item.
+            </summary>
+            <param name="durability">The amount to set to.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the durability is invalid, e.g. non-positive or larger than the maximum durability allowed by the game.</exception>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Items.IItemAsset">
+            <summary>
+            Represents an item asset.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItemAsset.ItemAssetId">
+            <summary>
+            The ID of the asset.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItemAsset.ItemName">
+            <summary>
+            The human readable name of the asset.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItemAsset.ItemType">
+            <summary>
+            The type of the item.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItemAsset.MaxQuality">
+            <summary>
+            The maximum quality of the item. <c>null</c> if item doesn't support qualities.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItemAsset.MaxAmount">
+            <summary>
+            The maximum quality of the item. <c>null</c> if item doesn't support amounts.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItemAsset.MaxDurability">
+            <summary>
+            The maximum durability of the item. <c>null</c> if item doesn't support durabilities.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Items.IItemDirectory">
+            <summary>
+            The service for querying items and item assets.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.IItemDirectory.GetItemAssetsAsync">
+            <summary>
+            Gets all item assets.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.IItemDirectory.GetItemDropsAsync">
+            <summary>
+            Gets all items currently dropped on ground.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Items.IItemDrop">
+            <summary>
+            Represents an item dropped at ground.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItemDrop.Position">
+            <summary>
+            Gets the position of the item.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.IItemDrop.DestroyAsync">
+            <summary>
+            Destroys the item.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Items.IItemEvent">
+            <summary>
+            The base interface used for all item related events.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItemEvent.Item">
+            <summary>
+            Gets the item related to the event.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Items.IItemInstance">
+            <summary>
+            Represents the instance of an item.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItemInstance.Item">
+            <summary>
+            Gets the item.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Items.IItemSpawner">
+            <summary>
+            The service for spawning items.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.IItemSpawner.GiveItemAsync(OpenMod.Extensions.Games.Abstractions.Items.IInventory,System.String,OpenMod.Extensions.Games.Abstractions.Items.IItemState)">
+            <summary>
+            Adds an item to the given inventory. The item will be dropped if the inventory is full.
+            </summary>
+            <param name="inventory">The inventory to add the item to.</param>
+            <param name="itemAssetId">The ID of the item asset.</param>
+            <param name="state">The optional state of the item.</param>
+            <returns><b><see cref="T:OpenMod.Extensions.Games.Abstractions.Items.IInventoryItem"/></b> if the inventory was not full; otherwise, <see cref="T:OpenMod.Extensions.Games.Abstractions.Items.IItemDrop"/>. If spawning was not successful, <b>null</b>.</returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.IItemSpawner.SpawnItemAsync(System.Numerics.Vector3,System.String,OpenMod.Extensions.Games.Abstractions.Items.IItemState)">
+            <summary>
+            Spawns an item.
+            </summary>
+            <param name="position">The position to spawn the item at.</param>
+            <param name="itemAssetId">The ID of the item asset.</param>
+            <param name="state">The optional state of the item.</param>
+            <returns><b>The dropped item</b> if successful; otherwise, <b>null</b>.</returns>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Items.IItemState">
+            <summary>
+            Represents the state of an item.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItemState.ItemQuality">
+            <summary>
+            Gets the quality of the item.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItemState.ItemDurability">
+            <summary>
+            Gets the durability of the item.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItemState.ItemAmount">
+            <summary>
+            Gets the amount of the item.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Items.IItemState.StateData">
+            <summary>
+            Gets the state of the item.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.InventoryExtensions.ClearAsync(OpenMod.Extensions.Games.Abstractions.Items.IInventory)">
+            <summary>
+            Removes all items from the given inventory.
+            </summary>
+            <param name="inventory">The inventory to clear.</param>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.InventoryExtensions.FindByType(OpenMod.Extensions.Games.Abstractions.Items.IInventory,System.String,System.Collections.Generic.IComparer{OpenMod.Extensions.Games.Abstractions.Items.IInventoryItem})">
+            <summary>
+            Searches for items by the item type.
+            </summary>
+            <param name="inventory">The inventory to search in.</param>
+            <param name="itemType">The type of the item to search for.</param>
+            <param name="comparer">The optional item comparer.</param>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.InventoryExtensions.FindByType(OpenMod.Extensions.Games.Abstractions.Items.IInventoryPage,System.String,System.Collections.Generic.IComparer{OpenMod.Extensions.Games.Abstractions.Items.IInventoryItem})">
+            <summary>
+            Searches for items by the item type.
+            </summary>
+            <param name="page">The inventory page to search in.</param>
+            <param name="itemType">The type of the item to search for.</param>
+            <param name="comparer">The optional item comparer.</param>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.InventoryExtensions.FindByAssetId(OpenMod.Extensions.Games.Abstractions.Items.IInventory,System.String,System.Collections.Generic.IComparer{OpenMod.Extensions.Games.Abstractions.Items.IInventoryItem})">
+            <summary>
+            Searches for items by the item asset id.
+            </summary>
+            <param name="inventory">The inventory to search in.</param>
+            <param name="itemAssetId">The ID of the item to search for.</param>
+            <param name="comparer">The optional item comparer.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.InventoryExtensions.FindByAssetId(OpenMod.Extensions.Games.Abstractions.Items.IInventoryPage,System.String,System.Collections.Generic.IComparer{OpenMod.Extensions.Games.Abstractions.Items.IInventoryItem})">
+            <summary>
+            Searches for items by the item asset id.
+            </summary>
+            <param name="page">The inventory page to search in.</param>
+            <param name="itemAssetId">The ID of the item to search for.</param>
+            <param name="comparer">The optional item comparer.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.ItemDirectoryExtensions.FindByIdAsync(OpenMod.Extensions.Games.Abstractions.Items.IItemDirectory,System.String)">
+            <summary>
+            Searches for items by the item asset id.
+            </summary>
+            <param name="directory">The item directory service.</param>
+            <param name="itemAssetId">The item asset id to search for.</param>
+            <returns><b>The <see cref="T:OpenMod.Extensions.Games.Abstractions.Items.IItemAsset"/></b> if found; otherwise, <b>null</b>.</returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.ItemDirectoryExtensions.FindByNameAsync(OpenMod.Extensions.Games.Abstractions.Items.IItemDirectory,System.String,System.Boolean)">
+            <summary>
+            Searches for items by the item asset name.
+            </summary>
+            <param name="directory">The item directory service.</param>
+            <param name="itemName">The name of the item asset.</param>
+            <param name="exact">If true, only exact name matches will be used.</param>
+            <returns><b>The <see cref="T:OpenMod.Extensions.Games.Abstractions.Items.IItemAsset"/></b> if found; otherwise, <b>null</b>.</returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.ItemSpawnerExtensions.GiveItemAsync(OpenMod.Extensions.Games.Abstractions.Items.IItemSpawner,OpenMod.Extensions.Games.Abstractions.Items.IInventory,OpenMod.Extensions.Games.Abstractions.Items.IItemAsset,OpenMod.Extensions.Games.Abstractions.Items.IItemState)">
+            See <see cref="M:OpenMod.Extensions.Games.Abstractions.Items.IItemSpawner.GiveItemAsync(OpenMod.Extensions.Games.Abstractions.Items.IInventory,System.String,OpenMod.Extensions.Games.Abstractions.Items.IItemState)"/>.
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Items.ItemSpawnerExtensions.SpawnItemAsync(OpenMod.Extensions.Games.Abstractions.Items.IItemSpawner,System.Numerics.Vector3,OpenMod.Extensions.Games.Abstractions.Items.IItemAsset,OpenMod.Extensions.Games.Abstractions.Items.IItemState)">
+            See <see cref="M:OpenMod.Extensions.Games.Abstractions.Items.IItemSpawner.GiveItemAsync(OpenMod.Extensions.Games.Abstractions.Items.IInventory,System.String,OpenMod.Extensions.Games.Abstractions.Items.IItemState)"/>.
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Items.KnownItemTypes">
+            <summary>
+            Represents common item types. Support depends on the game.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Items.NullItemState">
+            <summary>
+            Represents the null item state for items that do not have a state.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.KnownGameCapabilities">
+            <summary>
+            Represents common game capabilities.
+            Can be used to check if the current game supports specific features.
+            See <see cref="M:OpenMod.API.IOpenModHost.HasCapability(System.String)"/>.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Persistence.IGameSaveEvent">
+            <summary>
+            The event that is triggered when the game performs a save.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayer">
+            <summary>
+            Represents a player entity.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Players.IPlayer.Stance">
+            <summary>
+            The stance of the player.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Players.IPlayer.Address">
+            <summary>
+            The address of the player.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerChattingEvent">
+            <summary>
+            The event that is triggered before a player message is broadcasted.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Players.IPlayerChattingEvent.Message">
+            <summary>
+            Gets the chat message to be broadcasted.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerDamagedEvent">
+            <summary>
+            The event that is triggered when damage has been dealt to a player.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Players.IPlayerDamagedEvent.DamageSource">
+            <summary>
+            GEts the damage source.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Players.IPlayerDamagedEvent.DamageAmount">
+            <summary>
+            Gets the amount of the damage dealt.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerDamagingEvent">
+            <summary>
+            The event that is triggered when damage is to be dealt to a player.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Players.IPlayerDamagingEvent.DamageSource">
+            <summary>
+            The damage source.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Players.IPlayerDamagingEvent.DamageAmount">
+            <summary>
+            The amount of the damage.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerDeathEvent">
+            <summary>
+            The event that is triggered when a player death occurs.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Players.IPlayerDeathEvent.DeathPosition">
+            <summary>
+            The position the player died at.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerDyingEvent">
+            <summary>
+            The event that is triggered when a player is dying.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerEnteredVehicleEvent">
+            <summary>
+            The event that is triggered when a player has entered a vehicle.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerEnteringVehicleEvent">
+            <summary>
+            The event that is triggered when a player is entering a vehicle.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerEvent">
+            <summary>
+            The base interface for all player related events.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Players.IPlayerEvent.Player">
+            <summary>
+            The player related to the event.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerExitedVehicleEvent">
+            <summary>
+            The event that is triggered when a player has exited a vehicle.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerExitingVehicleEvent">
+            <summary>
+            The event that is triggered when a player is exiting a vehicle.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerItemEquippedEvent">
+            <summary>
+            The event that is triggered when a player has equipped an item.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerItemEquippingEvent">
+            <summary>
+            The event that is triggered when a player is equpping an item.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerItemUnequippedEvent">
+            <summary>
+            The event that is triggered when a player has unequipped an item.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerItemUnequippingEvent">
+            <summary>
+            The event that is triggered when a player is unequipping an item.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerSpawnedEvent">
+            <summary>
+            The event that is triggered when a player has spawned.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerUser">
+            <summary>
+            Represents a player user.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Players.IPlayerUser.Player">
+            <summary>
+            Gets the player.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.IPlayerUser`1">
+            <summary>
+            Represents a player user.
+            </summary>
+            <typeparam name="T">The player type.</typeparam>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Players.IPlayerUser`1.Player">
+            <summary>
+            Gets the player.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.KnownDamageSources">
+            <summary>
+            Represents common damage sources. Support depends on the game.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Players.KnownPlayerStances">
+            <summary>
+            Represents common player stances. Support depends on the game.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Transforms.IWorldTransform">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Transforms.IWorldTransform.TransformName">
+            <summary>
+            Gets the name of the transform.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Transforms.IWorldTransform.ParentTransform">
+            <summary>
+            Gets the parent transform of this transform.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Transforms.IWorldTransform.ChildTransforms">
+            <summary>
+            Gets the child transforms of this transform.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Transforms.IWorldTransform.Position">
+            <summary>
+            Gets the position of the transform.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Transforms.IWorldTransform.Velocity">
+            <summary>
+            Gets the velocity of the transform.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Transforms.IWorldTransform.Rotation">
+            <summary>
+            Gets the rotation of the transform.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Transforms.IWorldTransform.SetVelocityAsync(System.Numerics.Vector3)">
+            <summary>
+            Sets the velocity of the transform.
+            </summary>
+            <param name="velocity">The velocity to set.</param>
+            <exception cref="T:System.NotSupportedException">Thrown if this transform does not support velocity.</exception>
+            <returns><b>True</b> if successful; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Transforms.IWorldTransform.SetPositionAsync(System.Numerics.Vector3)">
+            <summary>
+            Sets the position of the transform.
+            </summary>
+            <param name="position">The position to set to.</param>
+            <returns><b>True</b> if successful; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Transforms.IWorldTransform.SetRotationAsync(System.Numerics.Quaternion)">
+            <summary>
+            Sets the rotation of the transform.
+            </summary>
+            <param name="rotation">The rotation to set to.</param>
+            <returns><b>True</b> if successful; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Transforms.IWorldTransform.DestroyAsync">
+            <summary>
+            Destorys the transform.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Transforms.QuaternionMathExtensions.ToEulerAngles(System.Numerics.Quaternion)">
+            <summary>
+            Converts a quaternion to its euler angles where X is pitch, Y is yaw, and Z is roll.
+            </summary>
+            <param name="quaternion">The quaternion to convert.</param>
+            <returns>Euler angles of the quaternion.</returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Transforms.QuaternionMathExtensions.ToQuaternion(System.Numerics.Vector3)">
+            <summary>
+            Converts euler angles to its quaternion where where X is pitch, Y is yaw, and Z is roll.
+            </summary>
+            <param name="eulerAngles"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Transforms.QuaternionMathExtensions.Rotate(System.Numerics.Vector3,System.Numerics.Quaternion)">
+            <summary>
+            Rotates this point by the given rotation.
+            </summary>
+            <param name="point">The point to rotate.</param>
+            <param name="rotation">The rotation to apply.</param>
+            <returns>The rotated point.</returns>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Vehicles.ICanEnterVehicle">
+            <summary>
+            Represents entities that can enter vehicles.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Vehicles.ICanEnterVehicle.CurrentVehicle">
+            <summary>
+            Gets the current vehicle. Returns null if the entity is not a passenger.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicle">
+            <summary>
+            Represents a vehicle.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicle.Asset">
+            <summary>
+            Gets the asset of the vehicle.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicle.State">
+            <summary>
+            Gets the state of the vehicle.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicle.Transform">
+            <summary>
+            Gets the transform of the vehicle.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicle.VehicleInstanceId">
+            <summary>
+            Gets the unique instance ID of the vehicle.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicle.Driver">
+            <summary>
+            Gets the driver of the vehicle.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicle.Passengers">
+            <summary>
+            Gets the passengers of the vehicle.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicle.AddPassengerAsync(OpenMod.Extensions.Games.Abstractions.Entities.IEntity)">
+            <summary>
+            Adds a passenger to the vehicle.
+            </summary>
+            <param name="passenger">The passenger to add.</param>
+            <returns><b>True</b> if the passenger was added; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicle.RemovePassengerAsync(OpenMod.Extensions.Games.Abstractions.Entities.IEntity)">
+            <summary>
+            Removes a passenger from the vehicle.
+            </summary>
+            <param name="passenger">The passenger to remove.</param>
+            <returns><b>True</b> if the passenger was removed; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicle.DestroyAsync">
+            <summary>
+            Destroys the vehicle.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleAsset">
+            <summary>
+            Represents a vehicle asset.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleAsset.VehicleAssetId">
+            <summary>
+            Gets the ID of the vehicle asset.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleAsset.VehicleName">
+            <summary>
+            The human readable name of the asset.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleAsset.VehicleType">
+            <summary>
+            Gets the type of the vehicle asset.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleDirectory">
+            <summary>
+            The service for querying vehicles and vehicle assets.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleDirectory.GetVehicleAssetsAsync">
+            <summary>
+            Gets all vehicle assets.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleDirectory.GetVehiclesAsync">
+            <summary>
+            Gets all vehicles.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleEvent">
+            <summary>
+            The base interface for all vehicle related events.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleEvent.Vehicle">
+            <summary>
+            Gets the vehicle related to the event.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleSpawner">
+            <summary>
+            The service for spawning vehicles.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleSpawner.SpawnVehicleAsync(System.Numerics.Vector3,System.Numerics.Quaternion,System.String,OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleState)">
+            <summary>
+            Spawns a vehicle at the given position.
+            </summary>
+            <param name="position">The position to spawn the vehicle at.</param>
+            <param name="rotation">The rotation to spawn the vehicle in.</param>
+            <param name="vehicleAssetId">The ID of the vehicle asset.</param>
+            <param name="state">The optional state of the vehicle.</param>
+            <returns><b>The spawned vehicle</b> if successful; otherwise, <b>null</b>.</returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleSpawner.SpawnVehicleAsync(OpenMod.Extensions.Games.Abstractions.Players.IPlayer,System.String,OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleState)">
+            <summary>
+            Spawns a vehicle for the given player.
+            </summary>
+            <param name="player">The player to spawn the vehicle for.</param>
+            <param name="vehicleAssetId">The ID of the vehicle asset.</param>
+            <param name="state">The optional state of the vehicle.</param>
+            <returns><b>The spawned vehicle</b> if successful; otherwise, <b>null</b>.</returns>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleState">
+            <summary>
+            Represents the state of a vehicle.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleState.StateData">
+            <summary>
+            The vehicle state.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Vehicles.KnownVehicleTypes">
+            <summary>
+            Represents common vehicle types. Support depends on the game.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Extensions.Games.Abstractions.Vehicles.NullVehicleState">
+            <summary>
+            The null vehicle state for vehicles that do not have a state.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Vehicles.VehicleDirectoryExtensions.FindByIdAsync(OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleDirectory,System.String)">
+            <summary>
+            Searches for vehicles by the vehicle asset id.
+            </summary>
+            <param name="directory">The vehicle directory service.</param>
+            <param name="vehicleAssetId">The vehicle asset id to search for.</param>
+            <returns><b>The <see cref="T:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleAsset"/></b> if found; otherwise, <b>null</b>.</returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Vehicles.VehicleDirectoryExtensions.FindByNameAsync(OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleDirectory,System.String,System.Boolean)">
+            <summary>
+            Searches for vehicles by the vehicle asset name.
+            </summary>
+            <param name="directory">The item directory service.</param>
+            <param name="vehicleName">The name of the vehicle asset.</param>
+            <param name="exact">If true, only exact name matches will be used.</param>
+            <returns><b>The <see cref="T:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleAsset"/></b> if found; otherwise, <b>null</b>.</returns>
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Vehicles.VehicleSpawnerExtensions.SpawnVehicleAsync(OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleSpawner,OpenMod.Extensions.Games.Abstractions.Players.IPlayer,System.String)">
+            See <see cref="M:OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleSpawner.SpawnVehicleAsync(OpenMod.Extensions.Games.Abstractions.Players.IPlayer,System.String,OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleState)"/>.
+        </member>
+        <member name="M:OpenMod.Extensions.Games.Abstractions.Vehicles.VehicleSpawnerExtensions.SpawnVehicleAsync(OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleSpawner,System.Numerics.Vector3,System.String,OpenMod.Extensions.Games.Abstractions.Vehicles.IVehicleState)">
+            <summary>
+            Spawns a vehicle at the given position.
+            </summary>
+            <param name="vehicleSpawner">The vehicle spawner.</param>
+            <param name="position">The position to spawn the vehicle at.</param>
+            <param name="vehicleAssetId">The ID of the vehicle asset.</param>
+            <param name="state">The optional state of the vehicle.</param>
+            <returns><b>The spawned vehicle</b> if successful; otherwise, <b>null</b>.</returns>
+        </member>
+    </members>
+</doc>

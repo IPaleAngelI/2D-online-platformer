@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpenMod.Common</name>
+    </assembly>
+    <members>
+        <member name="T:OpenMod.Common.Helpers.AssemblyExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Reflection.Assembly"/>.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Common.Helpers.AssemblyExtensions.GetLoadableTypes(System.Reflection.Assembly)">
+            <summary>
+            Safely returns the set of loadable types from an assembly.
+            </summary>
+            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> from which to load types.</param>
+            <returns>
+            The set of types from the <paramref name="assembly" />, or the subset
+            of types that could be loaded if there was any error.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if <paramref name="assembly" /> is <see langword="null" />.
+            </exception>
+            <remarks>
+            Avoid using this method, unless you don't care about missing types
+            </remarks>
+        </member>
+        <member name="M:OpenMod.Common.Helpers.AssemblyExtensions.GetMissingDependencies(System.Reflection.ReflectionTypeLoadException)">
+            <summary>
+            Gets the missing assembly names based on ReflectionTypeLoadException
+            </summary>
+        </member>
+        <member name="T:OpenMod.Common.Helpers.AssemblyNameEqualityComparer">
+            <summary>
+            Comparer of <see cref="T:System.Reflection.AssemblyName"/> that comparers the name
+            </summary>
+        </member>
+        <member name="T:OpenMod.Common.Hotloading.Hotloader">
+            <summary>
+            Adds support for hotloading assemblies.
+            Use <see cref="M:OpenMod.Common.Hotloading.Hotloader.LoadAssembly(System.Byte[])"/> instead of <see cref="M:System.Reflection.Assembly.Load(System.Byte[])"/>.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Common.Hotloading.Hotloader.Enabled">
+            <summary>
+            Defines if hotloading is enabled.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Common.Hotloading.Hotloader.LoadAssembly(System.Byte[])">
+            <summary>
+            Hotloads an assembly. Redirects to <see cref="M:System.Reflection.Assembly.Load(System.Byte[])"/> if <see cref="P:OpenMod.Common.Hotloading.Hotloader.Enabled"/> is set to false.
+            </summary>
+            <param name="assemblyData">The assembly to hotload.</param>
+            <returns>The loaded assembly.</returns>
+        </member>
+        <member name="M:OpenMod.Common.Hotloading.Hotloader.LoadAssembly(System.Byte[],System.Byte[])">
+            <summary>
+            Hotloads an assembly. Redirects to <see cref="M:System.Reflection.Assembly.Load(System.Byte[],System.Byte[])"/> if <see cref="P:OpenMod.Common.Hotloading.Hotloader.Enabled"/> is set to false.
+            </summary>
+            <param name="assemblyData">The assembly to hotload.</param>
+            <param name="assemblySymbols">A byte array that contains the raw bytes representing the symbols for the assembly.</param>
+            <returns>The loaded assembly.</returns>
+        </member>
+        <member name="M:OpenMod.Common.Hotloading.Hotloader.Remove(System.Reflection.Assembly)">
+            <summary>
+            Removes an assembly from the hotloader cache.
+            </summary>
+            <param name="assembly">The assembly to remove.</param>
+        </member>
+        <member name="M:OpenMod.Common.Hotloading.Hotloader.GetAssembly(System.String)">
+            <summary>
+            Resolves a hotloaded assembly. Hotloaded assemblies have an auto generated assembly name.
+            </summary>
+            <param name="fullname">The assembly name to resolve.</param>
+            <returns><b>The hotloaded assembly</b> if found; otherwise, <b>null</b>.</returns>
+        </member>
+        <member name="M:OpenMod.Common.Hotloading.Hotloader.FindAssembly(System.Reflection.AssemblyName)">
+            <summary>
+            Resolves a hotloaded assembly. Hotloaded assemblies have an auto generated assembly name.
+            </summary>
+            <param name="name">The assembly name to resolve.</param>
+            <returns><b>The hotloaded assembly</b> if found; otherwise, <b>null</b>.</returns>
+        </member>
+        <member name="M:OpenMod.Common.Hotloading.Hotloader.ContainsAssembly(System.Reflection.AssemblyName)">
+            <summary>
+            Checks if hotloader contains assembly.
+            </summary>
+            <param name="name">The assembly name to check.</param>
+        </member>
+        <member name="M:OpenMod.Common.Hotloading.Hotloader.GetHotloadedAssemblies">
+            <summary>
+            Gets all hotloaded assemblies.
+            </summary>
+            <returns>The hotloaded assemblies.</returns>
+        </member>
+        <member name="M:OpenMod.Common.Hotloading.Hotloader.GetRealAssemblyName(System.Reflection.Assembly)">
+            <summary>
+            Gets the real assembly name of an hotloaded assembly. Hotloaded assemblies have an auto generated assembly name.
+            </summary>
+            <param name="assembly">The assembly to get the real name of.</param>
+            <returns><b>The real assembly name</b> of the hotloaded assembly. If the given assembly was not hotloaded, it will return <b>the assembly's name</b>.</returns>
+        </member>
+    </members>
+</doc>

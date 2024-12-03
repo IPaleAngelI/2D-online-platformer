@@ -1,0 +1,469 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpenMod.Core</name>
+    </assembly>
+    <members>
+        <member name="P:OpenMod.Core.Commands.CommandParameters.RawParameters">
+            <summary>
+            The internal stored raw parameter list.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Core.Commands.CommandParameters.Item(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="P:OpenMod.Core.Commands.CommandParameters.Length">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenMod.Core.Commands.CommandParameters.GetAsync``1(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenMod.Core.Commands.CommandParameters.GetAsync(System.Int32,System.Type)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenMod.Core.Commands.CommandParameters.GetAsync``1(System.Int32,``0)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenMod.Core.Commands.CommandParameters.GetAsync(System.Int32,System.Type,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenMod.Core.Commands.CommandParameters.TryGet``1(System.Int32,``0@)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenMod.Core.Commands.CommandParameters.GetArgumentLine(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenMod.Core.Commands.CommandParameters.GetArgumentLine(System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenMod.Core.Commands.CommandParameters.TryGet(System.Int32,System.Type,System.Object@)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenMod.Core.Commands.CommandParameters.ToArray">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenMod.Core.Commands.CommandParameters.ToList">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenMod.Core.Commands.CommandParameters.GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenMod.Core.Commands.CommandParameters.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="P:OpenMod.Core.Commands.CommandParameters.Count">
+            <inheritdoc />
+        </member>
+        <member name="T:OpenMod.Core.Configuration.YamlConfigurationProviderEx">
+            <summary>
+            A YAML file based <see cref="T:Microsoft.Extensions.Configuration.FileConfigurationProvider"/>.
+            Ex: Supports variables.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Core.Configuration.YamlConfigurationSourceEx">
+            <summary>
+            A YAML file based <see cref="T:Microsoft.Extensions.Configuration.FileConfigurationSource"/>.
+            Ex: Supports variables.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Core.Eventing.BasicCancellableEvent">
+            <summary>
+               A basic cancellable event that does not need a separate class
+            </summary>
+        </member>
+        <member name="T:OpenMod.Core.Eventing.BasicEvent">
+            <summary>
+               A basic event that does not need a separate class
+            </summary>
+        </member>
+        <member name="T:OpenMod.Core.Events.OpenModInitializedEvent">
+            <summary>
+            The event that is triggered when OpenMod has been initialized. 
+            It is called after the container has been built and all plugins have been loaded.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Core.Events.OpenModInitializedEvent.Host">
+            <summary>
+            The OpenMod host.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Core.Events.OpenModShutdownEvent">
+            <summary>
+            The event that is triggered before OpenMod is shutting down.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Core.Helpers.ArgumentsParser.ParseArguments(System.String)">
+            <summary>
+            C-like argument parser
+            </summary>
+            <param name="line">Line string with arguments.</param>
+            <returns>The args[] array (argv)</returns>
+        </member>
+        <member name="M:OpenMod.Core.Helpers.AsyncHelper.IsAsync(System.Reflection.MethodInfo)">
+            <summary>
+                Checks if given method is an async method.
+            </summary>
+            <param name="method">A method to check</param>
+        </member>
+        <member name="M:OpenMod.Core.Helpers.AsyncHelper.UnwrapTask(System.Type)">
+            <summary>
+                Returns void if given type is Task.
+            Return T, if given type is Task{T}.
+            Returns given type otherwise.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Core.Helpers.AsyncHelper.RunSync``1(System.Func{System.Threading.Tasks.Task{``0}})">
+            <summary>
+                Runs a async method synchronously.
+            </summary>
+            <param name="func">A function that returns a result</param>
+            <typeparam name="TResult">Result type</typeparam>
+            <returns>Result of the async operation</returns>
+        </member>
+        <member name="M:OpenMod.Core.Helpers.AsyncHelper.RunSync(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+                Runs a async method synchronously.
+            </summary>
+            <param name="action">An async action</param>
+        </member>
+        <member name="M:OpenMod.Core.Helpers.AsyncHelper.Schedule(System.String,System.Func{System.Threading.Tasks.Task},System.Action{System.Exception})">
+            <summary>
+               Schedules a task on a different thread (fire and forget)
+            </summary>
+            <param name="name">The name of the task.</param>
+            <param name="task">The task to run.</param>
+            <param name="exceptionHandler">The optional exception handler.</param>
+        </member>
+        <member name="F:OpenMod.Core.Helpers.TimeSpanHelper.s_RegexPattern">
+            Regex Breakdown:
+            (\d+\.?\d*|\d*\.?\d+)\ *[a-zA-Z]+
+             \d+\.?\d*                           Must start with one or more digits, then match can include a period, then match can end with zero or more digits
+                      |                          or
+                       \d*\.?\d+                 Starts with zero or more digits, then match can include a period, then match must end with one or more digits
+                                 \ *             Can contain spaces
+                                    [a-zA-Z]+    One or more letters
+        </member>
+        <member name="M:OpenMod.Core.Helpers.TimeSpanHelper.Parse(System.String)">
+            Examples of unparsed inputs:
+            - 20 seconds
+            - 30 days, 40 minutes, and 50 seconds
+            - 10h20m30s
+            - 3.5 days
+            - 1234.123     milliseconds
+        </member>
+        <member name="M:OpenMod.Core.Ioc.ActivatorUtilitiesEx.CreateInstance``1(Autofac.ILifetimeScope,System.Object[])">
+            <summary>
+            Instantiate a type with constructor arguments provided directly and/or from an <see cref="T:System.IServiceProvider"/>.
+            Ex: Instance will be owned by lifetime and auto-dispose when the lifetime gets disposed.
+            </summary>
+            <typeparam name="T">The type to activate</typeparam>
+            <param name="lifetimeScope">The lifetime scope used to resolve dependencies</param>
+            <param name="parameters">Constructor arguments not provided by the <paramref name="lifetimeScope"/>.</param>
+            <returns>An activated object of type T</returns>
+        </member>
+        <member name="M:OpenMod.Core.Ioc.ActivatorUtilitiesEx.CreateInstance(Autofac.ILifetimeScope,System.Type,System.Object[])">
+            <summary>
+            Instantiate a type with constructor arguments provided directly and/or from an <see cref="T:System.IServiceProvider"/>.
+            Ex: Instance will be owned by lifetime and auto-dispose when the lifetime gets disposed.
+            </summary>
+            <param name="lifetimeScope">The lifetime scope used to resolve dependencies</param>
+            <param name="instanceType">The type to activate</param>
+            <param name="parameters">Constructor arguments not provided by the <paramref name="lifetimeScope"/>.</param>
+            <returns>An activated object of type instanceType</returns>
+        </member>
+        <member name="M:OpenMod.Core.Ioc.LifetimeScopeExtensions.BeginLifetimeScopeEx(Autofac.ILifetimeScope)">
+            <summary>
+            Begin a new nested scope. Component instances created via the new scope
+            will be disposed along with it. Ex: Will dispose if parent scope gets disposed.
+            </summary>
+            <returns>A new lifetime scope.</returns>
+        </member>
+        <member name="M:OpenMod.Core.Ioc.LifetimeScopeExtensions.BeginLifetimeScopeEx(Autofac.ILifetimeScope,System.Object)">
+            <summary>
+            Begin a new sub-scope. Instances created via the sub-scope
+            will be disposed along with it. Ex: Will dispose if parent scope gets disposed.
+            </summary>
+            <param name="this">The lifetime used to create the sub-scope</param>
+            <param name="tag">The tag applied to the <see cref="T:Autofac.ILifetimeScope"/>.</param>
+            <returns>A new lifetime scope.</returns>
+        </member>
+        <member name="M:OpenMod.Core.Ioc.LifetimeScopeExtensions.BeginLifetimeScopeEx(Autofac.ILifetimeScope,System.Action{Autofac.ContainerBuilder})">
+            <summary>
+            Begin a new nested scope, with additional components available to it.
+            Component instances created via the new scope
+            will be disposed along with it. Ex: Will dispose if parent scope gets disposed.
+            </summary>
+            <param name="this">The lifetime used to create the sub-scope</param>
+            <param name="configurationAction">Action on a <see cref="T:Autofac.ContainerBuilder"/>
+            that adds component registrations visible only in the new scope.</param>
+            <returns>A new lifetime scope.</returns>
+        </member>
+        <member name="M:OpenMod.Core.Ioc.LifetimeScopeExtensions.BeginLifetimeScopeEx(Autofac.ILifetimeScope,System.Object,System.Action{Autofac.ContainerBuilder})">
+            <summary>
+            Begin a new nested scope, with additional components available to it.
+            Component instances created via the new scope
+            will be disposed along with it. Ex: Will dispose if parent scope gets disposed.
+            </summary>
+            <param name="this">The lifetime used to create the sub-scope</param>
+            <param name="tag">The tag applied to the <see cref="T:Autofac.ILifetimeScope"/>.</param>
+            <param name="configurationAction">Action on a <see cref="T:Autofac.ContainerBuilder"/>
+            that adds component registrations visible only in the new scope.</param>
+            <returns>A new lifetime scope.</returns>
+        </member>
+        <member name="M:OpenMod.Core.Localization.SmartFormatOptions.TryAddFormatter``1">
+            <summary>
+            Adds <see cref="T:SmartFormat.Core.Extensions.IFormatter"/> extension to the formatters list
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns><see langword="true"/>, if the extension was added.</returns>
+        </member>
+        <member name="M:OpenMod.Core.Localization.SmartFormatOptions.TryRemoveFormatter``1">
+            <summary>
+            Removes <see cref="T:SmartFormat.Core.Extensions.IFormatter"/> extension from the formatters list
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns><see langword="true"/>, if the extension was removed.</returns>
+        </member>
+        <member name="M:OpenMod.Core.Localization.SmartFormatOptions.TryAddSource``1">
+            <summary>
+            Adds <see cref="T:SmartFormat.Core.Extensions.ISource"/> extension to the source list
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns><see langword="true"/>, if the extension was added.</returns>
+        </member>
+        <member name="M:OpenMod.Core.Localization.SmartFormatOptions.TryRemoveSource``1">
+            <summary>
+            Removes <see cref="T:SmartFormat.Core.Extensions.ISource"/> extension from the source list
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns><see langword="true"/>, if the extension was removed.</returns>
+        </member>
+        <member name="M:OpenMod.Core.Patching.HarmonyExtensions.PatchAllConditional(HarmonyLib.Harmony,System.Reflection.Assembly,System.String[])">
+            <summary>
+            Only applies patches that satisfy any of the given conditions.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Core.Patching.HarmonyExtensions.NopPatch(HarmonyLib.Harmony,System.Reflection.MethodBase)">
+            <summary>
+            Applies a no-operation patch.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Core.Permissions.DefaultPermissionCheckProvider.BuildPermissionTree(System.String)">
+            <summary>
+                Builds a parent permission tree for the given permission <br />
+                If the target has any of these permissions, they will automatically have the given permission too <br /><br />
+                <b>Example Input:</b>
+            <code>
+              "OpenMod.Core:commands.help"
+            </code>
+                <b>Example output:</b>
+                <code>
+            [
+                "*",
+                "OpenMod.*"
+                "OpenMod.Core:*"
+                "OpenMod.Core:commands.*",
+                "OpenMod.Core:commands.help",
+            ]
+            </code>
+            </summary>
+            <param name="permission">The permission to build the tree for</param>
+            <returns>The collection of all parent permission nodes</returns>
+        </member>
+        <member name="T:OpenMod.Core.Permissions.Events.PermissionActorRoleAddedEvent">
+            <summary>
+            Event that is triggered when a role is added to the actor
+            </summary>
+        </member>
+        <member name="T:OpenMod.Core.Permissions.Events.PermissionActorRoleEvent">
+            <summary>
+            Event that is triggered when a role is added to or removed from the actor
+            </summary>
+        </member>
+        <member name="T:OpenMod.Core.Permissions.Events.PermissionActorRoleRemovedEvent">
+            <summary>
+            Event that is triggered when a role is removed from the actor
+            </summary>
+        </member>
+        <member name="M:OpenMod.Core.Persistence.YamlDataStoreOptions.TryAddConverter``1">
+            <summary>
+            Adds the specified <see cref="T:YamlDotNet.Serialization.IYamlTypeConverter"/> to the converters list.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns><see langword="true"/> if the converter is added to converters list; <see langword="false"/> if the converter is already present.</returns>
+        </member>
+        <member name="M:OpenMod.Core.Persistence.YamlDataStoreOptions.TryRemoveConverter``1">
+            <summary>
+            Removes the specified <see cref="T:YamlDotNet.Serialization.IYamlTypeConverter"/> from the converters list.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns><see langword="true"/> if the converter is successfully found and removed; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="T:OpenMod.Core.Persistence.YamlNullableEnumTypeConverter">
+            Fixes an issue introduced in YamlDotNet 9.1
+            https://github.com/aaubry/YamlDotNet/issues/544
+        </member>
+        <member name="T:OpenMod.Core.Plugins.OpenModPluginBase">
+            <summary>
+            Base class for all OpenMod plugins.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Core.Plugins.OpenModUniversalPlugin">
+            <summary>
+            Base class for all OpenMod universal plugins.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Core.Plugins.PluginAssemblyStore.TryInstallMissingDependencies">
+            <summary>
+            Defines if OpenMod would try to install missing dependencies.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Core.Plugins.PluginStatus">
+            <summary>
+            The loading status of an OpenMod plugin.
+            </summary>
+        </member>
+        <member name="F:OpenMod.Core.Plugins.PluginStatus.Initialized">
+            <summary>
+            The plugin instance has been created but hasn't been loaded yet.
+            </summary>
+        </member>
+        <member name="F:OpenMod.Core.Plugins.PluginStatus.Loading">
+            <summary>
+            The plugin is loading, but has not yet finished.
+            </summary>
+        </member>
+        <member name="F:OpenMod.Core.Plugins.PluginStatus.Loaded">
+            <summary>
+            The plugin has finished loading.
+            </summary>
+        </member>
+        <member name="F:OpenMod.Core.Plugins.PluginStatus.Unloading">
+            <summary>
+            The plugin is unloading, but has not yet finished.
+            </summary>
+        </member>
+        <member name="F:OpenMod.Core.Plugins.PluginStatus.Unloaded">
+            <summary>
+            The plugin has finished unloading.
+            </summary>
+        </member>
+        <member name="F:OpenMod.Core.Plugins.PluginStatus.ExceptionWhenLoading">
+            <summary>
+            The plugin threw an exception during the loading process.
+            </summary>
+        </member>
+        <member name="F:OpenMod.Core.Plugins.PluginStatus.ExceptionWhenUnloading">
+            <summary>
+            The plugin threw an exception during the unloading process.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Core.Users.Events.IUserConnectingEvent">
+            <summary>
+            The event that is triggered when a user attempts to connect to the server.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Core.Users.Events.IUserConnectingEvent.RejectionReason">
+            <summary>
+            Gets the rejection reason. If not null; will reject the user. Use <see cref="M:OpenMod.Core.Users.Events.IUserConnectingEvent.RejectAsync(System.String)"/> to set the value.
+            </summary>
+        </member>
+        <member name="M:OpenMod.Core.Users.Events.IUserConnectingEvent.RejectAsync(System.String)">
+            <summary>
+            Rejects a players connection attempt.
+            </summary>
+            <param name="reason">The reason of the rejection.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="reason"/> is null.</exception>
+        </member>
+        <member name="T:OpenMod.Core.Users.Events.IUserEvent">
+            <summary>
+            The base interface for all user related events.
+            </summary>
+        </member>
+        <member name="P:OpenMod.Core.Users.Events.IUserEvent.User">
+            <summary>
+            Gets the user related to the event.
+            </summary>
+        </member>
+        <member name="T:OpenMod.Core.Users.Events.IUserFirstConnectingEvent">
+            <summary>
+            The event that is triggered when a user connects for the first time.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.Configuration.YamlConfigurationExtensions">
+            <summary>
+            Extension methods for adding <see cref="T:Microsoft.Extensions.Configuration.YamlConfigurationExtensions"/>.
+            Ex: supports variables.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.YamlConfigurationExtensions.AddYamlFileEx(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String)">
+            <summary>
+            Adds the YAML configuration provider at <paramref name="path"/> to <paramref name="builder"/>.
+            Ex: supports variables.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to add to.</param>
+            <param name="path">Path relative to the base path stored in 
+            <see cref="P:Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties"/> of <paramref name="builder"/>.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.YamlConfigurationExtensions.AddYamlFileEx(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Boolean)">
+            <summary>
+            Adds the YAML configuration provider at <paramref name="path"/> to <paramref name="builder"/>.
+            Ex: supports variables.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to add to.</param>
+            <param name="path">Path relative to the base path stored in 
+            <see cref="P:Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties"/> of <paramref name="builder"/>.</param>
+            <param name="optional">Whether the file is optional.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.YamlConfigurationExtensions.AddYamlFileEx(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Adds the YAML configuration provider at <paramref name="path"/> to <paramref name="builder"/>.
+            Ex: supports variables.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to add to.</param>
+            <param name="path">Path relative to the base path stored in 
+            <see cref="P:Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties"/> of <paramref name="builder"/>.</param>
+            <param name="optional">Whether the file is optional.</param>
+            <param name="reloadOnChange">Whether the configuration should be reloaded if the file changes.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.YamlConfigurationExtensions.AddYamlFileEx(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Boolean,System.Boolean)">
+            <summary>
+            Adds the YAML configuration provider at <paramref name="path"/> to <paramref name="builder"/>.
+            Ex: supports variables.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to add to.</param>
+            <param name="path">Path relative to the base path stored in 
+            <see cref="P:Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties"/> of <paramref name="builder"/>.</param>
+            <param name="variables">Variables to replace.</param>
+            <param name="optional">Whether the file is optional.</param>
+            <param name="reloadOnChange">Whether the configuration should be reloaded if the file changes.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.YamlConfigurationExtensions.AddYamlFileEx(Microsoft.Extensions.Configuration.IConfigurationBuilder,Microsoft.Extensions.FileProviders.IFileProvider,System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Boolean,System.Boolean)">
+            <summary>
+            Adds a YAML configuration source to <paramref name="builder"/>.
+            Ex: supports variables.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to add to.</param>
+            <param name="provider">The <see cref="T:Microsoft.Extensions.FileProviders.IFileProvider"/> to use to access the file.</param>
+            <param name="path">Path relative to the base path stored in 
+                <see cref="P:Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties"/> of <paramref name="builder"/>.</param>
+            <param name="variables">Variables to replace.</param>
+            <param name="optional">Whether the file is optional.</param>
+            <param name="reloadOnChange">Whether the configuration should be reloaded if the file changes.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.YamlConfigurationExtensions.AddYamlFileEx(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.Action{OpenMod.Core.Configuration.YamlConfigurationSourceEx})">
+            <summary>
+            Adds a YAML configuration source to <paramref name="builder"/>.
+            Ex: supports variables.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to add to.</param>
+            <param name="configureSource">Configures the source.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</returns>
+        </member>
+    </members>
+</doc>
